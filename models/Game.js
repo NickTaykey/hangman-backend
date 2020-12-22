@@ -1,7 +1,10 @@
-import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 
-const gameSchema = new Schema({});
+const gameSchema = new mongoose.Schema({
+	word     : String,
+	attempts : Number
+});
 
-const Game = model('Game', gameSchema);
+const Game = mongoose.model('Game', gameSchema);
 
 export default Game;

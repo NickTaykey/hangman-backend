@@ -1,20 +1,20 @@
-import dotenv from 'dotenv';
-
-dotenv.config();
-
 import express from 'express';
 import logger from 'morgan';
 import mongoose from 'mongoose';
-
-const { HOST, PORT } = process.env;
-
+import dotenv from 'dotenv';
 import wordsRouter from './routes/game.js';
+import indexRouter from './routes/index.js';
+
+dotenv.config();
 
 const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use('/games', wordsRouter);
+app.use('/', indexRouter);
 
 mongoose.connect('mongodb://localhost:27017/hangman-backend', {
 	useNewUrlParser    : true,
@@ -28,6 +28,6 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => console.log('successfully connected to the DB!'));
 
-app.use('/words', wordsRouter);
+const { HOST, PORT } = process.env;
 
 app.listen(PORT, HOST);

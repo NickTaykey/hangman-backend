@@ -3,7 +3,7 @@ import logger from 'morgan';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import wordsRouter from './routes/game.js';
+import wordsRouter from './routes/games.js';
 import indexRouter from './routes/index.js';
 
 dotenv.config();

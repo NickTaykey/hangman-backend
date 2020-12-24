@@ -1,9 +1,10 @@
 import { Router } from 'express';
+import { apiErrorHandler } from './helpers.js';
 
 const router = Router();
 
 router.get('*', function (req, res) {
-	res.status(404).json({ error: { status: '404', message: 'Not Found!' } });
+	return apiErrorHandler(res, 404, 'Not Found!');
 });
 
 export default router;
